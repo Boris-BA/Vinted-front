@@ -11,7 +11,6 @@ import Signup from "./pages/Signup";
 
 //Import des Composants
 import Header from "./components/Header";
-import Banner from "./components/Banner";
 
 ////
 function App() {
@@ -31,7 +30,6 @@ function App() {
     <div className="App">
       <Router>
         <Header token={token} handleToken={handleToken}></Header>
-        <Banner></Banner>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/offer/:id" element={<Offer />}></Route>

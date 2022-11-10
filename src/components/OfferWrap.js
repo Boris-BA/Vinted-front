@@ -7,6 +7,7 @@ const OfferWrap = ({ data, isLoading }) => {
   //   console.log(data.offers[1].owner.account.username);
   // console.log(data.offers[1].owner.account.avatar.url);
   //   {`${item.owner.account.avatar.url}`}
+  // console.log(data.offers[1].owner.account.avatar.secure_url);
 
   return (
     <div className="card-flex">
@@ -16,7 +17,15 @@ const OfferWrap = ({ data, isLoading }) => {
             <Link to={`/offer/${item._id}`}>
               <div className="card">
                 <div className="avatar">
-                  <div className="avatar-img"></div>
+                  {item.owner?.account.avatar ? (
+                    <img
+                      className="avatar-img"
+                      src={item.owner?.account.avatar.secure_url}
+                      alt="owner"
+                    />
+                  ) : (
+                    <div className="avatar-img"></div>
+                  )}
                   {/* {item.owner.account.avatar.url ? (
                   <img
                     src="https://res.cloudinary.com/lereacteur/image/upload/v1667579365/api/vinted-v2/users/63653de436dd4584809e40d0/avatar.jpg"
@@ -37,9 +46,32 @@ const OfferWrap = ({ data, isLoading }) => {
                   />
                 </div>
                 <div className="card-info">
-                  <p>{item.product_price} €</p>
+                  {/* <p>{item.product_price} €</p>
                   <p>{item.product_details[1]["TAILLE"]}</p>
-                  <p>{item.product_details[1]["MARQUE"]}</p>
+                  <p>{item.product_details[1]["MARQUE"]}</p> */}
+                  <p className="p-black">{item.product_price} €</p>
+                  {item.product_details.map((detail, index) => {
+                    if (detail.TAILLE) {
+                      return (
+                        <p className="p-grey" key={index}>
+                          {detail.TAILLE}
+                        </p>
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
+                  {item.product_details.map((detail, index) => {
+                    if (detail.MARQUE) {
+                      return (
+                        <p className="p-grey" key={index}>
+                          {detail.MARQUE}
+                        </p>
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
                 </div>
               </div>
             </Link>

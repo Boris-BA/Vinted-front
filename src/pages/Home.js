@@ -4,7 +4,7 @@ import axios from "axios";
 
 ///////////
 import OfferWrap from "../components/OfferWrap";
-
+import Banner from "../components/Banner";
 //////////
 
 const Home = () => {
@@ -26,15 +26,18 @@ const Home = () => {
     fetchData();
   }, []);
   return (
-    <div className="container">
-      {isLoading ? (
-        <p>Is loading...</p>
-      ) : (
-        <OfferWrap data={data} isLoading={isLoading} />
-      )}
-      {/* <Link to="offer">Aller sur Offer</Link> */}
-      {/* <Link to="offer"></Link> */}
-    </div>
+    <>
+      <Banner></Banner>
+      <div className="container">
+        {isLoading ? (
+          <p>Is loading...</p>
+        ) : (
+          <OfferWrap data={data} isLoading={isLoading} />
+        )}
+        {/* <Link to="offer">Aller sur Offer</Link> */}
+        {/* <Link to="offer"></Link> */}
+      </div>
+    </>
   );
 };
 

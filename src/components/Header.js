@@ -17,6 +17,7 @@ const Header = ({ token, handleToken }) => {
         {token ? (
           <>
             <button
+              className="btn-header-full"
               onClick={() => {
                 handleToken(null);
               }}
@@ -27,15 +28,15 @@ const Header = ({ token, handleToken }) => {
         ) : (
           <>
             <Link to="/signup">
-              <button>S'inscrire</button>
+              <button className="btn-header-empty">S'inscrire</button>
             </Link>
             <Link to="login">
-              <button>Se connecter</button>
+              <button className="btn-header-empty">Se connecter</button>
             </Link>
           </>
         )}
 
-        <button>Vend tes articles</button>
+        <button className="btn-header-full">Vend tes articles</button>
       </div>
     </div>
   );
