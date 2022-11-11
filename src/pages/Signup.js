@@ -8,15 +8,18 @@ const Signup = ({ handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   return (
     <div className="container">
       <h1 className="h1-form">S'inscrire</h1>
+      <p className="error">{errorMessage}</p>
       <div className="container-form">
         <form
           className="container-form-input"
           onSubmit={async (event) => {
             event.preventDefault();
+            setErrorMessage("");
             let token = null;
             const data = {
               username: username,
@@ -37,10 +40,18 @@ const Signup = ({ handleToken }) => {
               navigate("/");
             } catch (error) {
               console.log("Erreur");
+              if (error.response?.status === 409) {
+                setErrorMessage("Email déjà utilisé");
+              }
+              //   Si je reçois un message d'erreur "Missing parameters"
+              if (error.response?.data.message === "Missing parameters") {
+                setErrorMessage("Veuillez remplir tous les champs");
+              }
             }
           }}
         >
           <input
+            className={errorMessage ? "error-input" : null}
             onChange={(event) => {
               setUsername(event.target.value);
             }}
@@ -49,6 +60,7 @@ const Signup = ({ handleToken }) => {
             value={username}
           />
           <input
+            className={errorMessage ? "error-input" : null}
             onChange={(event) => {
               setEmail(event.target.value);
             }}
@@ -57,6 +69,7 @@ const Signup = ({ handleToken }) => {
             value={email}
           />
           <input
+            className={errorMessage ? "error-input" : null}
             onChange={(event) => {
               setPassword(event.target.value);
             }}

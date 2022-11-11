@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+body {
+  font-family: "Open Sans", sans-serif;
+}
 
 a {
   text-decoration: none;
@@ -306,4 +309,14 @@ input {
   gap: 10px;
   margin-bottom: 1rem;
   font-size: 1.1rem;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin: 1rem;
+}
+
+.error-input {
+  border: solid 1px red;
 }

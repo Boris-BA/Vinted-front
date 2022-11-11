@@ -6,17 +6,20 @@ import axios from "axios";
 const Login = ({ handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   //axios
 
   return (
     <div className="container">
       <h1 className="h1-form">Se connecter</h1>
+      <p className="error">{errorMessage}</p>
       <div className="container-form">
         <form
           className="container-form-input"
           onSubmit={async (event) => {
             event.preventDefault();
+            setErrorMessage("");
             /////
             //   let token =
             //     "R6OEZ1Hd3XbP2lx8Enucy4kxDqqc1I0FWjFuBIhg2hjlnSSltRLaAf0NH8v8Qz3H";
@@ -37,12 +40,16 @@ const Login = ({ handleToken }) => {
             } catch (error) {
               console.log("Erreur");
               console.log("Mot de passe ou Email incorect");
+              if (error.response?.status === 400) {
+                setErrorMessage("Email ou mot de passe incorect");
+              }
             }
             //   token = handleToken(token);
             //   navigate("/");
           }}
         >
           <input
+            className={errorMessage ? "error-input" : null}
             onChange={(event) => {
               setEmail(event.target.value);
             }}
@@ -51,10 +58,11 @@ const Login = ({ handleToken }) => {
             value={email}
           />
           <input
+            className={errorMessage ? "error-input" : null}
             onChange={(event) => {
               setPassword(event.target.value);
             }}
-            type="text"
+            type="password"
             placeholder="Mot de passe"
             value={password}
           />
