@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Header = ({ token, handleToken }) => {
+const Header = ({ token, handleToken, search, setSearch }) => {
   return (
     <div className="header-container container">
       <Link to="/">
@@ -12,7 +12,20 @@ const Header = ({ token, handleToken }) => {
           />
         </div>
       </Link>
-
+      <div className="search-bar">
+        <form action="">
+          <input
+            onChange={(event) => {
+              event.preventDefault();
+              setSearch(event.target.value);
+            }}
+            className="search-bar-button"
+            type="text"
+            placeholder="Rechercher des articles"
+            value={search}
+          />
+        </form>
+      </div>
       <div className="container-button">
         {token ? (
           <>

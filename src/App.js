@@ -26,12 +26,30 @@ function App() {
     }
   };
 
+  //Filter nav bar
+  const [search, setSearch] = useState("");
+  const [filterAsc, setFilterAsc] = useState("");
+
   return (
     <div className="App">
       <Router>
-        <Header token={token} handleToken={handleToken}></Header>
+        <Header
+          token={token}
+          handleToken={handleToken}
+          search={search}
+          setSearch={setSearch}
+        ></Header>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route
+            path="/"
+            element={
+              <Home
+                search={search}
+                filterAsc={filterAsc}
+                setFilterAsc={setFilterAsc}
+              />
+            }
+          ></Route>
           <Route path="/offer/:id" element={<Offer />}></Route>
           <Route
             path="/login"
