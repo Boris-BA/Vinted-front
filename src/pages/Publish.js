@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Nagigate from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 
 const Publish = ({ token }) => {
@@ -128,7 +128,7 @@ const Publish = ({ token }) => {
       {data && <img src={data.secure_url} alt="" />}
     </div>
   ) : (
-    <Navigate to="/signup" />
+    <Navigate to="/login" />
   );
 };
 

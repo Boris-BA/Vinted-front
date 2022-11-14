@@ -17,8 +17,11 @@ const Home = ({ search, filterAsc, setFilterAsc, values, setValues }) => {
     const fetchData = async () => {
       try {
         setnotFound("");
+        // const response = await axios.get(
+        //   `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}&sort=${filterAsc}&priceMin=${values[0]}&priceMax=${values[1]}`
+        // );
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}&sort=${filterAsc}&priceMin=${values[0]}&priceMax=${values[1]}`
+          `https://site--backend-vinted--2qgmjpqnw8yp.code.run/offers`
         );
         // console.log(response.data.offers);
         if (response.data.count === 0) {
