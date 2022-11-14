@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useState } from "react";
 
@@ -63,7 +63,7 @@ function App() {
             path="/signup"
             element={<Signup handleToken={handleToken} />}
           ></Route>
-          <Route path="/publish" element={<Publish />}></Route>
+          <Route path="/publish" element={<Publish token={token} />}></Route>
         </Routes>
       </Router>
     </div>

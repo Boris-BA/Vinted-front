@@ -1,7 +1,8 @@
 import { useState } from "react";
+import Nagigate from "react-router-dom";
 import axios from "axios";
 
-const Publish = () => {
+const Publish = ({ token }) => {
   const [titre, setTitre] = useState("");
   const [description, setDescription] = useState("");
   const [marque, setMarque] = useState("");
@@ -26,15 +27,14 @@ const Publish = () => {
       formData.append("city", lieu);
       formData.append("brand", marque);
       formData.append("size", taille);
-      formData.append("pricture", image);
+      formData.append("picture", image);
       console.log(formData);
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
         formData,
         {
           headers: {
-            authorization:
-              "Bearer R6OEZ1Hd3XbP2lx8Enucy4kxDqqc1I0FWjFuBIhg2hjlnSSltRLaAf0NH8v8Qz3H",
+            authorization: `Bearer ${token}`,
             // Je rpécise que j'envoie un formdata
             "Content-Type": "multipart/form-data",
           },
@@ -48,7 +48,7 @@ const Publish = () => {
     }
   };
 
-  return (
+  return token ? (
     <div className="container">
       <form onSubmit={handleSubmit}>
         <input
@@ -127,6 +127,8 @@ const Publish = () => {
       </form>
       {data && <img src={data.secure_url} alt="" />}
     </div>
+  ) : (
+    <Navigate to="/signup" />
   );
 };
 

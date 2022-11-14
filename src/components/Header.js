@@ -48,8 +48,9 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             </Link>
           </>
         )}
-
-        <button className="btn-header-full">Vend tes articles</button>
+        <Link to="/publish">
+          <button className="btn-header-full">Vend tes articles</button>
+        </Link>
       </div>
     </div>
   );
