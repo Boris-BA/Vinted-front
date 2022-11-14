@@ -8,7 +8,7 @@ import Banner from "../components/Banner";
 import Filter from "../components/Filter";
 //////////
 
-const Home = ({ search, filterAsc, setFilterAsc }) => {
+const Home = ({ search, filterAsc, setFilterAsc, values, setValues }) => {
   const [data, setData] = useState();
   const [isLoading, setIsloading] = useState(true);
   const [notFound, setnotFound] = useState(false);
@@ -18,7 +18,7 @@ const Home = ({ search, filterAsc, setFilterAsc }) => {
       try {
         setnotFound("");
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}&sort=${filterAsc}`
+          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}&sort=${filterAsc}&priceMin=${values[0]}&priceMax=${values[1]}`
         );
         // console.log(response.data.offers);
         if (response.data.count === 0) {
@@ -32,10 +32,15 @@ const Home = ({ search, filterAsc, setFilterAsc }) => {
       }
     };
     fetchData();
-  }, [search, filterAsc]);
+  }, [search, filterAsc, values]);
   return (
     <>
-      <Filter filterAsc={filterAsc} setFilterAsc={setFilterAsc}></Filter>
+      <Filter
+        filterAsc={filterAsc}
+        setFilterAsc={setFilterAsc}
+        values={values}
+        setValues={setValues}
+      ></Filter>
       <Banner></Banner>
       <div className="container">
         {isLoading ? (

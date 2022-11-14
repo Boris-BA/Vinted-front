@@ -120,6 +120,28 @@ a {
   object-fit: cover;
 }
 
+/* /////////Filter//////// */
+
+.filter {
+  /* background-color: bisque; */
+  display: flex;
+  align-items: center;
+}
+
+.filter-left {
+  display: flex;
+  /* background-color: lavender; */
+  /* align-items: center; */
+  margin-right: 40px;
+}
+
+.filter-toggle {
+  align-items: center;
+}
+
+.filter-slide {
+}
+
 /* //////Card Wrap////////// */
 
 .card-flex {

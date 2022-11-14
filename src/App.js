@@ -11,6 +11,7 @@ import Signup from "./pages/Signup";
 
 //Import des Composants
 import Header from "./components/Header";
+import Publish from "./pages/Publish";
 
 ////
 function App() {
@@ -29,6 +30,7 @@ function App() {
   //Filter nav bar
   const [search, setSearch] = useState("");
   const [filterAsc, setFilterAsc] = useState("");
+  const [values, setValues] = useState([0, 500]);
 
   return (
     <div className="App">
@@ -47,6 +49,8 @@ function App() {
                 search={search}
                 filterAsc={filterAsc}
                 setFilterAsc={setFilterAsc}
+                values={values}
+                setValues={setValues}
               />
             }
           ></Route>
@@ -59,6 +63,7 @@ function App() {
             path="/signup"
             element={<Signup handleToken={handleToken} />}
           ></Route>
+          <Route path="/publish" element={<Publish />}></Route>
         </Routes>
       </Router>
     </div>
