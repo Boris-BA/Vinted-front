@@ -29,8 +29,12 @@ const Signup = ({ handleToken }) => {
             };
             console.log(data);
             try {
+              // const response = await axios.post(
+              //   "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+              //   data
+              // );
               const response = await axios.post(
-                "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+                "https://site--backend-vinted--2qgmjpqnw8yp.code.run/user/signup",
                 data
               );
               console.log("Inscription envoyée");

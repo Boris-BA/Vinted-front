@@ -21,9 +21,9 @@ const Home = ({ search, filterAsc, setFilterAsc, values, setValues }) => {
         //   `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}&sort=${filterAsc}&priceMin=${values[0]}&priceMax=${values[1]}`
         // );
         const response = await axios.get(
-          `https://site--backend-vinted--2qgmjpqnw8yp.code.run/offers`
+          `https://site--backend-vinted--2qgmjpqnw8yp.code.run/offers?title=${search}&sort=${filterAsc}&priceMin=${values[0]}&priceMax=${values[1]}`
         );
-        // console.log(response.data.offers);
+        console.log(response.data.offers);
         if (response.data.count === 0) {
           setnotFound("Aucun article trouvé");
         }

@@ -17,8 +17,8 @@ const Publish = ({ token }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log(image);
-      console.log(prix);
+      // console.log(image);
+      // console.log(prix);
       const formData = new FormData();
       formData.append("title", titre);
       formData.append("description", description);
@@ -27,10 +27,22 @@ const Publish = ({ token }) => {
       formData.append("city", lieu);
       formData.append("brand", marque);
       formData.append("size", taille);
+      formData.append("color", couleur);
       formData.append("picture", image);
-      console.log(formData);
+      // console.log(formData);
+      // const response = await axios.post(
+      //   "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+      //   formData,
+      //   {
+      //     headers: {
+      //       authorization: `Bearer ${token}`,
+      //       // Je rpécise que j'envoie un formdata
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //   }
+      // );
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        "https://site--backend-vinted--2qgmjpqnw8yp.code.run/offer/publish/upload",
         formData,
         {
           headers: {

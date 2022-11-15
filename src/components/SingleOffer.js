@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SingleOffer = () => {
   const [data, setData] = useState();
@@ -13,12 +14,15 @@ const SingleOffer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // const response = await axios.get(
+        //   `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+        // );
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+          `https://site--backend-vinted--2qgmjpqnw8yp.code.run/offer/${id}`
         );
         console.log(response.data);
         // console.log(data.product_details[0]);
-        console.log(data);
+        // console.log(data);
 
         setData(response.data);
         setIsloading(false);
@@ -27,7 +31,7 @@ const SingleOffer = () => {
       }
     };
     fetchData();
-  }, [id, data]);
+  }, [id]);
   return (
     <div>
       {isLoading ? (
@@ -77,7 +81,9 @@ const SingleOffer = () => {
                 {data.owner ? data.owner.account.username : "John Doe"}
               </span>
             </div>
-            <button className="btn-header-full-offer">Acheter</button>
+            <Link to="/payment" state={{ title: "Toto", price: "12" }}>
+              <button className="btn-header-full-offer">Acheter</button>
+            </Link>
           </div>
         </div>
       )}
